@@ -1,0 +1,10 @@
+# ANK
+
+## What is ANK?
+
+ANK is an implementation of email with a focus on security and modern protocols. It builds upon the Signal protocol for end-to-end encryption of email messages, and JMAP, an open API standard for modern email.
+
+=> https://jmap.io JMAP
+=> https://signal.org/docs/ Signal
+
+ANK is named after Ankylosaurus, an armoured dinosaur.
