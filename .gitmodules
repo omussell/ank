@@ -1,0 +1,3 @@
+[submodule "site/themes/site/themes/olla"]
+	path = site/themes/site/themes/olla
+	url = git@github.com:omussell/olla.git
