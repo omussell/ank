@@ -1,6 +1,5 @@
 -r production.txt
 
-mkdocs
+mkdocs==1.1
 mkdocs-material
-mkdocstrings
-
+mkdocs-monorepo-plugin

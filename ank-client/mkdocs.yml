@@ -1,7 +1,7 @@
-site_name: "ANK"
+site_name: "ANK-Client"
 site_url: "https://omussell.github.io/ank"
-docs_dir: "site"
-site_dir: "docs"
+#docs_dir: "site"
+#site_dir: "docs"
 theme:
   name: "material"
   palette:
@@ -12,15 +12,9 @@ theme:
 
 nav:
   - Home: index.md
-  - Why: why.md
-  - Client: '!include ./ank-client/mkdocs.yml'
-  - Server: '!include ./ank-server/mkdocs.yml'
-  - Signal: '!include ./ank-signal/mkdocs.yml'
-  - Key Transparency: '!include ./ank-keytransparency/mkdocs.yml'
 
 plugins:
   - search
-  - monorepo
 
 markdown_extensions:
   - toc:
