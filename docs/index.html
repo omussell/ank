@@ -67,7 +67,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#notes" class="md-skip">
+        <a href="#implementation" class="md-skip">
           Skip to content
         </a>
       
@@ -206,9 +206,50 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#implementation" class="md-nav__link">
+    Implementation
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python" class="md-nav__link">
+    Python
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rust" class="md-nav__link">
+    Rust
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#golang" class="md-nav__link">
+    Golang
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ada-spark" class="md-nav__link">
+    Ada / Spark
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#notes" class="md-nav__link">
     Notes
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -434,9 +475,50 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#implementation" class="md-nav__link">
+    Implementation
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#python" class="md-nav__link">
+    Python
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rust" class="md-nav__link">
+    Rust
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#golang" class="md-nav__link">
+    Golang
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ada-spark" class="md-nav__link">
+    Ada / Spark
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#notes" class="md-nav__link">
     Notes
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -464,6 +546,56 @@
                 
                 <p>An independent implementation of the Signal protocol</p>
 <p>Used with the client/server for sending messages. Maybe an email replacement using JMAP.</p>
+<h2 id="implementation">Implementation<a class="headerlink" href="#implementation" title="Permanent link">&para;</a></h2>
+<p>I'm uncertain on which programming language to use. I have experience with Python, but I dont like it.</p>
+<p>The system created should be working well on the first release. I want this to be very reliable software that only gets patched or new releases for things like security issues and major language updates. We shouldnt be constantly adding new features.</p>
+<h3 id="python">Python<a class="headerlink" href="#python" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Easy to write, already know the language</li>
+<li>Modern tools want to use async with everything. FastAPI, HTTPX etc.</li>
+<li>Imports are a pain</li>
+<li>Lots of boilerplate code.</li>
+<li>Messy repo, lots of stuff wants to exist at the top level</li>
+<li>Interpreted, slow performance</li>
+<li>Dynamically typed. Recent introduction of type hints are awkward. Not fully supported, and relies on support in 3rd party libraries.</li>
+<li>New versions released often, and not supported for long</li>
+</ul>
+<h3 id="rust">Rust<a class="headerlink" href="#rust" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Picking up steam, getting lots of community support</li>
+<li>Syntax is weird, similar to C/C++</li>
+<li>Memory safe, prevents you from making a lot of security mistakes</li>
+<li>Slow compilation speed</li>
+<li>Small binaries</li>
+<li>Compiled</li>
+<li>Statically typed</li>
+<li>Ownshp / borrowing memory model</li>
+<li>New versions released often, and not supported for long</li>
+</ul>
+<h3 id="golang">Golang<a class="headerlink" href="#golang" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Supported by Google. Lots of weight behind it, but might get binned at any time.</li>
+<li>Wants error handling and logging on every function</li>
+<li>Small language so its easy to learn, but limits you</li>
+<li>Fast compilation speed</li>
+<li>Large binaries</li>
+<li>Garbage collected</li>
+<li>Compiled</li>
+<li>Statically typed</li>
+<li>New versions released often but high levels of backwards compatibility</li>
+</ul>
+<h3 id="ada-spark">Ada / Spark<a class="headerlink" href="#ada-spark" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Designed from the beginning for critical and high security environments</li>
+<li>Spark is a formally analysable subset of Ada</li>
+<li>SparkNaCl exists, and is of very high quality and speed</li>
+<li>SparkSkein apparently exists, which is Skein, a SHA3 contender. However, I cant find the implementation. The site appears to be down and the links are dead.</li>
+<li>Very verbose</li>
+<li>Compiled</li>
+<li>Statically typed</li>
+<li>New versions released every 10 years.</li>
+</ul>
+<p>The signal protocol seems to use sha-512 in some places. If there is an implementation of this, we can just use that. Or otherwise we could swap it out for something like <a href="https://github.com/BLAKE3-team/BLAKE3">BLAKE3</a> which is apparently much faster. </p>
 <h3 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h3>
 <p>The Signal protocol is good, but its limited to usage with Signal the app. There are open source libraries, but they havent been updated on Github in a long time. The recommended library is written in Java.</p>
 <p>Email is better as a messaging platform, but its old and frought with issues.</p>
