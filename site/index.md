@@ -28,6 +28,9 @@ The system created should be working well on the first release. I want this to b
 - Statically typed
 - Ownshp / borrowing memory model
 - New versions released often, and not supported for long
+- Optimised implementation of BLAKE3
+- Libsodium wrapper
+- Lots of community support so its going to be easier to get help online
 
 ### Golang
 - Supported by Google. Lots of weight behind it, but might get binned at any time.
