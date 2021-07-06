@@ -1,6 +1,0 @@
--r production.txt
-
-mkdocs
-mkdocs-material
-mkdocstrings
-
