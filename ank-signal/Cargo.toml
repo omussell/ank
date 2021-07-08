@@ -3,6 +3,7 @@ name = "ank-signal"
 version = "0.1.0"
 authors = ["omussell <oliver.mussell@hotmail.co.uk>"]
 edition = "2018"
+license = "Unlicense"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 

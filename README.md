@@ -8,3 +8,7 @@ End-to-end encrypted email using the JMAP and Signal protocols.
 
 https://omussell.github.io/ank
 
+
+## License
+
+Unlicense
