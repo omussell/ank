@@ -10,13 +10,14 @@ The system created should be working well on the first release. I want this to b
 
 ### Python
 - Easy to write, already know the language
-- Modern tools want to use async with everything. FastAPI, HTTPX etc.
+- Modern tools want to use async with everything. FastAPI, HTTPX etc. but async support is flakey
 - Imports are a pain
 - Lots of boilerplate code.
 - Messy repo, lots of stuff wants to exist at the top level
 - Interpreted, slow performance
 - Dynamically typed. Recent introduction of type hints are awkward. Not fully supported, and relies on support in 3rd party libraries.
 - New versions released often, and not supported for long
+- Means inevitably needs to be rewritten in a better language in future
 
 ### Rust
 - Picking up steam, getting lots of community support
@@ -26,21 +27,21 @@ The system created should be working well on the first release. I want this to b
 - Small binaries
 - Compiled
 - Statically typed
-- Ownshp / borrowing memory model
+- Ownership / borrowing memory model
 - New versions released often, and not supported for long
 - Optimised implementation of BLAKE3
 - Libsodium wrapper
 - Lots of community support so its going to be easier to get help online
 
 ### Golang
-- Supported by Google. Lots of weight behind it, but might get binned at any time.
-- Wants error handling and logging on every function
 - Small language so its easy to learn, but limits you
 - Fast compilation speed
 - Large binaries
 - Garbage collected
 - Compiled
 - Statically typed
+- Supported by Google. Lots of weight behind it, but might get binned at any time.
+- Wants error handling and logging on every function
 - New versions released often but high levels of backwards compatibility
 
 ### Ada / Spark
@@ -54,12 +55,14 @@ The system created should be working well on the first release. I want this to b
 - New versions released every 10 years.
 
 
-The signal protocol seems to use sha-512 in some places. If there is an implementation of this, we can just use that. Or otherwise we could swap it out for something like [BLAKE3](https://github.com/BLAKE3-team/BLAKE3) which is apparently much faster. 
+The signal protocol seems to use sha-512 in some places. If there is an implementation of this, we can just use that. Or otherwise we could swap it out for something like [BLAKE3](https://github.com/BLAKE3-team/BLAKE3) which is apparently much faster. There are C and Rust implementations in this repo.
 
 
 ### Notes
 
 The Signal protocol is good, but its limited to usage with Signal the app. There are open source libraries, but they havent been updated on Github in a long time. The recommended library is written in Java.
+
+The Signal app also works based on phone numbers. It would be nicer to have an email address and password+MFA, then its device agnostic.
 
 Email is better as a messaging platform, but its old and frought with issues.
 
@@ -81,6 +84,7 @@ Proposed Solution:
 
 Use DNSSEC+DANE?
 Store signal keys in key transparency? Thats how people find out emails addresses of others and find out the keys
+Or maybe just a directory server that should be queried. Doesnt store the raw email address, it stores a hash of the email address. Returns if that email exists or not. Do we really need a blockchain merkle tree thingy to prove identity? Just DNSSEC+DANE of directory server domain name, have it run a server with TLS, and respond yes or no to a hash of the email address.
 
 Should we support HTML? It can be used as attack vector, scripts, malicious images, tracking pixels etc. Maybe a subset of HTML? Or Gemini? Or just plain text...?
 
@@ -93,8 +97,8 @@ Key transparency
 
 https://sigstore.dev/
 
-
 Force TLS connections between servers. Minimum TLS ver is 1.3. 
+
 
 ## Workflow
 
@@ -107,3 +111,19 @@ Force TLS connections between servers. Minimum TLS ver is 1.3.
 - The server receives the message and stores it in the database.
 - The recipients client retrieves this message from the server/database, over TLS.
 - The recipient decrypts the message.
+
+
+## Development Phases
+
+### Phase 1
+
+- Initial proof of concept using Python, FastAPI and curl
+- Just super basic client/server with HTTP and JSON for sending and receiving messages
+- No JMAP, just JSON
+- No authentication, but user separation
+- Basic KT implementation, stored in redis or in memory
+- Messages stored in database like sqlite for testing
+
+This stage is to determine if we even want to use JMAP and Signal, or just much simpler implementation
+Could we instead use HTTP/JSON + public keys? Have the server serve the users public key. Like S/MIME but without the BS.
+How do you put HTML messages into JSON? Serialized? Not a good idea, look at EFAIL. Maybe just markdown instead, then client can render it.
