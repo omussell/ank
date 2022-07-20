@@ -1,0 +1,23 @@
+site_name: "ANK-Signal"
+site_url: "https://omussell.github.io/ank"
+#docs_dir: "site"
+#site_dir: "docs"
+theme:
+  name: "material"
+  palette:
+    primary: teal
+  icon:
+    logo: octicons/mention-16
+  favicon: images/mention.svg
+
+nav:
+  - Home: index.md
+
+plugins:
+  - search
+
+markdown_extensions:
+  - toc:
+      permalink: True
+  - admonition
+  - pymdownx.superfences
