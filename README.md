@@ -2,11 +2,11 @@
 
 Ank, named after ankylosaurus, armoured dinosaur
 
-End-to-end encrypted email using the JMAP and Signal protocols.
+End-to-end encrypted messaging
 
 ## Documentation
 
-https://omussell.github.io/ank
+<https://omussell.github.io/ank>
 
 
 ## License

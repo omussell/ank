@@ -1,64 +1,29 @@
-An independent implementation of the Signal protocol
+For initial version, should be purely plain text messages. We are going to be storing them inside a database so will need to be small amount of text.
+No formatting, no attachments, no hypertext or images.
+Can have links, but it will be plaintext.
+Should use sqlite mainly
+Postgres is future option but shouldnt necessarily be needed anyway, sqlite can cope.
+
+
+DNS should store the servers public key or some form of signature so we dont have spam and so we dont have to use DKIM/DMARC/SPF etc. for validation.
+
+
+Client is just http client via curl or python requests+typer cli
+Eventually the client could be a TUI?
+
+
+Its actually the same setup as SSH and SSHFP records
+We want ANKFP records lol. Or just use SRV as usual
+They're whats used to validate the server key
+
+Would there be two servers, one for users to login/keys, and one for sending/receiving messages?
+Need to log in to view the messages and decrypt them
+Would we need client/device keys? Each client to have a key to associate with a user? Existing clients just need password, new clients need MFA to double check its the correct user. Or if reset password.
+That would then require a server for managing users and their clients.
 
 Used with the client/server for sending messages. Maybe an email replacement using JMAP.
 
 ## Implementation
-
-I'm uncertain on which programming language to use. I have experience with Python, but I dont like it.
-
-The system created should be working well on the first release. I want this to be very reliable software that only gets patched or new releases for things like security issues and major language updates. We shouldnt be constantly adding new features.
-
-### Python
-- Easy to write, already know the language
-- Modern tools want to use async with everything. FastAPI, HTTPX etc. but async support is flakey
-- Imports are a pain
-- Lots of boilerplate code.
-- Messy repo, lots of stuff wants to exist at the top level
-- Interpreted, slow performance
-- Dynamically typed. Recent introduction of type hints are awkward. Not fully supported, and relies on support in 3rd party libraries.
-- New versions released often, and not supported for long
-- Means inevitably needs to be rewritten in a better language in future
-
-### Rust
-- Picking up steam, getting lots of community support
-- Syntax is weird, similar to C/C++
-- Memory safe, prevents you from making a lot of security mistakes
-- Slow compilation speed
-- Small binaries
-- Compiled
-- Statically typed
-- Ownership / borrowing memory model
-- New versions released often, and not supported for long
-- Optimised implementation of BLAKE3
-- Libsodium wrapper
-- Lots of community support so its going to be easier to get help online
-
-### Golang
-- Small language so its easy to learn, but limits you
-- Fast compilation speed
-- Large binaries
-- Garbage collected
-- Compiled
-- Statically typed
-- Supported by Google. Lots of weight behind it, but might get binned at any time.
-- Wants error handling and logging on every function
-- New versions released often but high levels of backwards compatibility
-
-### Ada / Spark
-- Designed from the beginning for critical and high security environments
-- Spark is a formally analysable subset of Ada
-- SparkNaCl exists, and is of very high quality and speed
-- SparkSkein apparently exists, which is Skein, a SHA3 contender. However, I cant find the implementation. The site appears to be down and the links are dead.
-- Very verbose
-- Compiled
-- Statically typed
-- New versions released every 10 years.
-
-
-The signal protocol seems to use sha-512 in some places. If there is an implementation of this, we can just use that. Or otherwise we could swap it out for something like [BLAKE3](https://github.com/BLAKE3-team/BLAKE3) which is apparently much faster. There are C and Rust implementations in this repo.
-
-
-### Notes
 
 The Signal protocol is good, but its limited to usage with Signal the app. There are open source libraries, but they havent been updated on Github in a long time. The recommended library is written in Java.
 
@@ -119,7 +84,7 @@ Force TLS connections between servers. Minimum TLS ver is 1.3.
 
 - Initial proof of concept using Python, FastAPI and curl
 - Just super basic client/server with HTTP and JSON for sending and receiving messages
-- No JMAP, just JSON
+- Just JSON
 - No authentication, but user separation
 - Basic KT implementation, stored in redis or in memory
 - Messages stored in database like sqlite for testing
