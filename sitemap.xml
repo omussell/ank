@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://omussell.github.io/ank/</loc>
+         <lastmod>2023-07-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://omussell.github.io/ank/client/</loc>
+         <lastmod>2023-07-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://omussell.github.io/ank/key_transparency/</loc>
+         <lastmod>2023-07-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://omussell.github.io/ank/server/</loc>
+         <lastmod>2023-07-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://omussell.github.io/ank/why/</loc>
+         <lastmod>2023-07-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+</urlset>
